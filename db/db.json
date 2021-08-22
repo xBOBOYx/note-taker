@@ -1,40 +1,8 @@
 {
   "notes": [
+    null,
     {
-      "title": "Test Title",
-      "text": "Test text"
-    },
-    {
-      "query": "",
-      "id": "1"
-    },
-    {
-      "query": "",
-      "id": "2"
-    },
-    {
-      "query": "",
-      "id": "3"
-    },
-    {
-      "query": "",
-      "id": "4"
-    },
-    {
-      "query": "",
-      "id": "5"
-    },
-    {
-      "query": "",
-      "id": "6"
-    },
-    {
-      "query": "",
-      "id": "7"
-    },
-    {
-      "query": "",
-      "id": "8"
+      "query": ""
     }
   ]
 }
