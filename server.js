@@ -1,8 +1,9 @@
-const express = require('express');
+
+const PORT = process.env.PORT || 3001;
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3001;
+const express = require('express');
 const app = express();
 
 const pnotes = require('./db/db.json');
@@ -13,21 +14,17 @@ app.use(express.static('public'));
 
 
 app.get('/api/notes', (req, res) => {
-  res.json(pnotes.slice(1));
-});
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
+  res.json(pnotes);
 });
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
+app.post('/api/notes', (req, res) => {
+    const genNote = generateNewNote(req.body, pnotes);
+    res.json(genNote);
 });
-
 
 function generateNewNote(body, noteArray) {
     const genNote = body;
@@ -46,12 +43,11 @@ function generateNewNote(body, noteArray) {
         path.join(__dirname, './db/db.json'),
         JSON.stringify(noteArray, null, 2)
     );
-    return newNote;
+    return genNote;
 }
 
-app.post('/api/notes', (req, res) => {
-    const genNote = generateNewNote(req.body, pnotes);
-    res.json(genNote);
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.listen(PORT, () => {
