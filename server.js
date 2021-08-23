@@ -14,11 +14,19 @@ app.use(express.static('public'));
 
 
 app.get('/api/notes', (req, res) => {
-  res.json(pnotes);
+  res.json(pnotes.slice(1));
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.post('/api/notes', (req, res) => {
@@ -45,10 +53,6 @@ function generateNewNote(body, noteArray) {
     );
     return genNote;
 }
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`); 
