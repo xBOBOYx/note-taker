@@ -62,7 +62,7 @@ function removesNote(id, noteArray) {
             noteArray.splice(i, 1);
             fs.writeFileSync(
                 path.join(__dirname, './db/db.json'),
-                JSON.stringify(noteArray, null, 2)
+                JSON.stringify(noteArray, null, 4)
             );
 
             break;
