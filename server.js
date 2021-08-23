@@ -49,10 +49,32 @@ function generateNewNote(body, noteArray) {
     
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
-        JSON.stringify(noteArray, null, 2)
+        JSON.stringify(noteArray, null, 4)
     );
     return genNote;
 }
+
+function removesNote(id, noteArray) {
+    for (let i = 0; i < noteArray.length; i++) {
+        let note = noteArray[i];
+
+        if (note.id == id) {
+            noteArray.splice(i, 1);
+            fs.writeFileSync(
+                path.join(__dirname, './db/db.json'),
+                JSON.stringify(noteArray, null, 2)
+            );
+
+            break;
+        }
+    }
+}
+
+app.delete('/api/notes/:id', (req, res) => {
+    removesNote( req.params.id, pnotes);
+    res.json(true);
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`); 
