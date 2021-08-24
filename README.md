@@ -40,6 +40,8 @@ This project is covered under MIT
 - The application will save and retrieve note data from a JSON file.
 - The application will delete notes.
 
+![pic](Assets/noteTakerg.gif)
+
 ## <ins>Contributions</ins>
 
 xBOBOYx
